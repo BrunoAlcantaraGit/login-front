@@ -3,5 +3,23 @@ primaryButtonText="Login Now"
 secondaryButtonText="Sign up Now"
 >
 <form [formGroup]="loginForm">
+  <app-primary-input
+  formGroupName="email"
+  type="email"
+  label="email"
+  placeholder="Enter your email"
+  >
+  </app-primary-input>
+
+  <app-primary-input
+  formGroupName="password"
+  type="password"
+  label="password"
+  placeholder="Enter your password"
+  >
+  </app-primary-input>
+
+  <samp>Forget your password</samp> <!--50:00-->
+
 </form>
 </app-default-login>
