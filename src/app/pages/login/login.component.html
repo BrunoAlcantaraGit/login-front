@@ -1,25 +1,28 @@
 <app-default-login title="Login into your account"
 primaryButtonText="Login Now"
 secondaryButtonText="Sign up Now"
+(submit)="enviar()"
+(navegate)="navegate()"
 >
 <form [formGroup]="loginForm">
   <app-primary-input
-  formGroupName="email"
+  formControlName="email"
+  inputName="email"
   type="email"
-  label="email"
-  placeholder="Enter your email"
-  >
+  label="Email"
+  placeholder="Enter your email">
   </app-primary-input>
 
   <app-primary-input
-  formGroupName="password"
+  formControlName="password"
+  inputName="password"
   type="password"
-  label="password"
+  label="Password"
   placeholder="Enter your password"
   >
   </app-primary-input>
 
-  <samp>Forget your password</samp> <!--50:00-->
+  <span>Forget your password</span> <!--50:00-->
 
 </form>
 </app-default-login>

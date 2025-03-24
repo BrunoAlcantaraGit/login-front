@@ -4,13 +4,13 @@
   <h2>{{title}}</h2>
   <ng-content></ng-content> <!--Essa tag serve para alocar tags que estão sendo injetadas no componente pai, que está utilizando o componente '' deafault-login ""-->
 <div class="btn-wrapper">
-  <button class="btn-primary" >{{primaryButtonText}}</button>
+  <button class="btn-primary" (click)="submit()">{{primaryButtonText}}</button>
   <div class="divider">
     <div></div>
     <span>or</span>
     <div></div>
   </div>
-  <button class="btn-secondary">{{secondaryButtonText}}</button>
+  <button class="btn-secondary"(click)="navegate()">{{secondaryButtonText}}</button>
 </div>
   </section >
   <section class="main-section">

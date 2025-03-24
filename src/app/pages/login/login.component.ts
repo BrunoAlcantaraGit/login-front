@@ -1,7 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, Output } from '@angular/core';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 import { DefaultLoginComponent } from '../../components/default-login/default-login.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
@@ -9,9 +11,10 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } 
   imports:
   [DefaultLoginComponent,
   ReactiveFormsModule,
-  PrimaryInputComponent
-
+  PrimaryInputComponent,
   ],
+  providers:[LoginService],
+
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -20,7 +23,10 @@ loginForm !: FormGroup;
 
 
 constructor(
-  private formBuilder:FormBuilder)
+  private formBuilder:FormBuilder,
+  private Router:Router,
+  private loginService:LoginService
+)
 {
   this.loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,6 +34,16 @@ constructor(
   })
 }
 
+enviar(){
+  this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+    next:(value) =>{console.log("sucesso")},
+    error:(error) =>{console.log("error")}
+  });
 
+}
+
+navegate(){
+  this.Router.navigate(['singup']);
+}
 
 }
