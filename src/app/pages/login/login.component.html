@@ -3,6 +3,7 @@ primaryButtonText="Login Now"
 secondaryButtonText="Sign up Now"
 (submit)="enviar()"
 (navegate)="navegate()"
+[disablePrimaryButton]="!loginForm.invalid"
 >
 <form [formGroup]="loginForm">
   <app-primary-input

@@ -1,9 +1,11 @@
+
 import { Router } from '@angular/router';
 import { Component, Output } from '@angular/core';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 import { DefaultLoginComponent } from '../../components/default-login/default-login.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -25,7 +27,9 @@ loginForm !: FormGroup;
 constructor(
   private formBuilder:FormBuilder,
   private Router:Router,
-  private loginService:LoginService
+  private loginService:LoginService,
+  private toastService: ToastrService
+
 )
 {
   this.loginForm = new FormGroup({
@@ -34,11 +38,15 @@ constructor(
   })
 }
 
+
+
 enviar(){
   this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-    next:(value) =>{console.log("sucesso")},
-    error:(error) =>{console.log("error")}
+    next:(value) => this.toastService.success("Login efetuado com sucesso"),
+    error:(error) => this.toastService.error("Erro")
   });
+
+
 
 }
 
