@@ -24,5 +24,10 @@ export class LoginService {
 
 
 register(nome:string,email: string, password: string){
-return this.http.post<RegisterResponse>(`${this.url}register`,{nome,email,password})
+return this.http.post<LoginResponse>(`${this.url}register`,{nome,email,password}).pipe(
+  tap((value)=>{
+    sessionStorage.setItem('auth-token', value.token)
+    sessionStorage.setItem('username', value.name)
+  }))
+
 }}

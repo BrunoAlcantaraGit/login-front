@@ -39,7 +39,7 @@ enviar(){
   if(this.sinupForm.value.password == this.sinupForm.value.confimPassword){
     this.loginService.register(this.sinupForm.value.name, this.sinupForm.value.email, this.sinupForm.value.password).subscribe({
       next:(value) => this.toastService.success("Usuário registraro com sucesso"), //ngx-toastr
-      error:(error) => this.toastService.error("Erro"),
+      error:(error) => this.toastService.error("Dados inválidos, verifique os dados informados"),
     });
     this.router.navigate(['login']);
   }else{

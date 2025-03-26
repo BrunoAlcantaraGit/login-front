@@ -6,6 +6,7 @@ import { DefaultLoginComponent } from '../../components/default-login/default-lo
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../services/login.service';
+import { AuthGuard } from '../../services/auth-guard.service';
 
 
 @Component({
@@ -22,13 +23,14 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent {
 loginForm !: FormGroup;
-
+authGuard : boolean = false
 
 constructor(
   private formBuilder:FormBuilder,
   private Router:Router,
   private toastService: ToastrService,
-  private loginService:LoginService
+  private loginService:LoginService,
+
 
 )
 {
@@ -40,12 +42,15 @@ constructor(
 
 
 
-enviar(){
+login(){
   this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-    next:(value) => this.toastService.success("Login efetuado com sucesso"), //ngx-toastr
-    error:(error) => this.toastService.error("Usuário não existe, ou credênciais inválidas"),	
+    next:(value) => {this.toastService.success("Login efetuado com sucesso")
+      sessionStorage.setItem('auth-token', value.token)
+      this.Router.navigate(['user']);
+    },
+     //ngx-toastr
+    error:(error) => this.toastService.error("Usuário não existe, ou credênciais inválidas"),
   });
-
 
 
 }
