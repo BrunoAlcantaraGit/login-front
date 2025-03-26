@@ -4,8 +4,8 @@ import { Component, Output } from '@angular/core';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 import { DefaultLoginComponent } from '../../components/default-login/default-login.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
@@ -27,8 +27,8 @@ loginForm !: FormGroup;
 constructor(
   private formBuilder:FormBuilder,
   private Router:Router,
-  private loginService:LoginService,
-  private toastService: ToastrService
+  private toastService: ToastrService,
+  private loginService:LoginService
 
 )
 {
@@ -42,8 +42,8 @@ constructor(
 
 enviar(){
   this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-    next:(value) => this.toastService.success("Login efetuado com sucesso"),
-    error:(error) => this.toastService.error("Erro")
+    next:(value) => this.toastService.success("Login efetuado com sucesso"), //ngx-toastr
+    error:(error) => this.toastService.error("Usuário não existe, ou credênciais inválidas"),	
   });
 
 

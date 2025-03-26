@@ -1,17 +1,21 @@
 <app-default-login
-primaryButtonText="Login Now"
-secondaryButtonText="Sign up Now"
+title="ing n and star today!"
+primaryButtonText="Sinup Now"
+secondaryButtonText="Login Now"
+(submit)="enviar()"
+(navegate)="navegate()"
 >
 
 
 
   <form [formGroup]="sinupForm">
+
     <app-primary-input
     formControlName="name"
-    inputName="email"
-    type="email"
-    label="Email"
-    placeholder="Enter your email">
+    inputName="name"
+    type="text"
+    label="Name"
+    placeholder="Enter your Name">
     </app-primary-input>
 
     <app-primary-input
@@ -30,6 +34,17 @@ secondaryButtonText="Sign up Now"
     placeholder="Enter your password"
     >
     </app-primary-input>
+
+    <app-primary-input
+    formControlName="confimPassword"
+    inputName="confimPassword"
+    type="password"
+    label="confime Your Password"
+    placeholder="confime Password"
+    >
+    </app-primary-input>
+
+
     </form>
 
 </app-default-login>
